@@ -1,0 +1,38 @@
+= Tiny RSS Docker Image
+Tiny Rss docker image
+
+[IMPORTANT]
+====
+. Database must be initialise manually
+. This project doesn't manage SSL certificate
+====
+
+TIP: A makefile provide commons operations
+
+
+== Variables
+Available variables for ttrss docker image
+
+----
+DB_TYPE=pgsql
+DB_HOST=db
+DB_USER=ttrss
+DB_NAME=ttrss
+DB_PASS=mysecretpassword
+DB_PORT=5432
+SELF_URL_PATH=http://127.0.0.1/
+SMTP_FROM_ADDRESS=ttrss@example.com
+SMTP_SERVER=smtp.example.com
+SMTP_LOGIN=stmp_login
+SMTP_PASSWORD=stmp_password
+SMTP_SECURE=tls
+----
+
+== Database
+Run this from ttrss docker container to initiate the database
+
+[source,bash]
+----
+docker exec -i -t ttrss_web_1 bash
+psql ttrss -U ttrss -f /var/www/html/schema/ttrss_schema_pgsql.sql -h db```
+----

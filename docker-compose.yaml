@@ -1,0 +1,33 @@
+version: "3.0"
+volumes:
+  pgdata:
+services:
+  db:
+      # https://hub.docker.com/_/postgres/
+      image: postgres:10-alpine
+      restart: always
+      volumes:
+          - pgdata:/var/lib/postgresql/data/ttrss
+      environment:
+          - POSTGRES_PASSWORD=mysecretpassword
+          - POSTGRES_USER=ttrss
+          - PGDATA=/var/lib/postgresql/data/ttrss
+          - POSTGRES_DB=ttrss
+
+  web:
+      image: olblak/ttrss
+      restart: always
+      env_file: 
+          - example.env
+      ports:
+         - "80:80"
+      depends_on:
+          - db
+          - update
+
+  update:
+      image: olblak/ttrss
+      restart: always
+      env_file: 
+          - example.env
+      entrypoint: "su www-data -p -c 'php ./update_daemon2.php' -s /bin/bash"
