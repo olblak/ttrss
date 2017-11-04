@@ -3,10 +3,10 @@ FROM php:5.6-apache
 LABEL maintainer=olblak
 
 RUN \
-  apt-get update &&\
-  apt-get install -y git apache2 postgresql postgresql-client &&\
+  apt-get update && \
+  apt-get install -y git apache2 postgresql postgresql-client && \
   apt-get install -y php-soap && \
-  apt-get install -y libcurl4-openssl-dev libxml2-dev &&\
+  apt-get install -y libcurl4-openssl-dev libxml2-dev && \
   apt-get clean
 
 RUN \
