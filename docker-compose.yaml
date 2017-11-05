@@ -1,4 +1,4 @@
-version: "3.0"
+version: "2.0"
 volumes:
   pgdata:
 services:
@@ -8,17 +8,14 @@ services:
       restart: always
       volumes:
           - pgdata:/var/lib/postgresql/data/ttrss
-      environment:
-          - POSTGRES_PASSWORD=mysecretpassword
-          - POSTGRES_USER=ttrss
-          - PGDATA=/var/lib/postgresql/data/ttrss
-          - POSTGRES_DB=ttrss
+      env_file: 
+          - db.env
 
   web:
       image: olblak/ttrss
       restart: always
       env_file: 
-          - env
+          - web.env
       ports:
          - "8082:80"
       depends_on:
@@ -29,5 +26,5 @@ services:
       image: olblak/ttrss
       restart: always
       env_file: 
-          - env
+          - web.env
       entrypoint: "su www-data -p -c 'php ./update_daemon2.php' -s /bin/bash"
