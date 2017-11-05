@@ -18,9 +18,9 @@ services:
       image: olblak/ttrss
       restart: always
       env_file: 
-          - example.env
+          - env
       ports:
-         - "80:80"
+         - "8082:80"
       depends_on:
           - db
           - update
@@ -29,5 +29,5 @@ services:
       image: olblak/ttrss
       restart: always
       env_file: 
-          - example.env
+          - env
       entrypoint: "su www-data -p -c 'php ./update_daemon2.php' -s /bin/bash"
