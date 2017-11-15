@@ -12,7 +12,7 @@ services:
           - db.env
 
   web:
-      image: olblak/ttrss
+      image: olblak/ttrss:b21ea8
       restart: always
       env_file: 
           - web.env
@@ -23,7 +23,7 @@ services:
           - update
 
   update:
-      image: olblak/ttrss
+      image: olblak/ttrss:b21ea8
       restart: always
       user: www-data
       working_dir: /var/www/html
