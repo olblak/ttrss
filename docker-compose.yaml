@@ -25,6 +25,8 @@ services:
   update:
       image: olblak/ttrss
       restart: always
+      user: www-data
+      working_dir: /var/www/html
+      entrypoint: "php ./update_daemon2.php"
       env_file: 
           - web.env
-      entrypoint: "su www-data -p -c 'php ./update_daemon2.php' -s /bin/bash"
