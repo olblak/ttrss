@@ -55,7 +55,7 @@
 	// *** Files and directories ***
 	// *****************************
 
-	define('PHP_EXECUTABLE', 'usr/local/bin/php');
+	define('PHP_EXECUTABLE', '/usr/local/bin/php');
 	// Path to PHP *COMMAND LINE* executable, used for various command-line tt-rss 
 	// programs and update daemon. Do not try to use CGI binary here, it won't work. 
 	// If you see HTTP headers being displayed while running tt-rss scripts, 
